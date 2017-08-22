@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "de.thegerman.affinitaschallenge"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "de.thegerman.affinitaschallenge.core.MockTestRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+
+    implementation "com.android.support:appcompat-v7:$versions.android_support"
+    implementation "com.android.support:recyclerview-v7:$versions.android_support"
+    implementation "com.android.support:support-annotations:$versions.android_support"
+    implementation "com.android.support:support-v4:$versions.android_support"
+    implementation "com.android.support:support-v13:$versions.android_support"
+    implementation "com.android.support:design:$versions.android_support"
+
+
+    implementation "android.arch.persistence.room:runtime:$versions.room"
+    implementation "android.arch.persistence.room:rxjava2:$versions.room"
+    annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
+    kapt "android.arch.persistence.room:compiler:$versions.room"
+
+    implementation "com.google.code.gson:gson:$versions.gson"
+    implementation "com.squareup.picasso:picasso:$versions.picasso"
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:$versions.picasso_downloader"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$versions.rxrelay"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.rxbinding"
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    testImplementation "junit:junit:$versions.junit"
+    testImplementation "org.mockito:mockito-core:$versions.mockito"
+
+    androidTestImplementation "org.mockito:mockito-android:$versions.mockito"
+
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+}

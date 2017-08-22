@@ -1,0 +1,41 @@
+def getBoolean(String name) {
+    def envValue = System.getenv(name)
+    if (envValue == null) {
+        return false
+    }
+    return Boolean.parseBoolean(envValue)
+}
+
+def getString(String name, String defaultValue) {
+    def envValue = System.getenv(name)
+    if (envValue == null) {
+        return defaultValue
+    }
+    return envValue
+}
+
+def getInt(String name, int defaultValue) {
+    def envValue = System.getenv(name)
+    if (envValue == null) {
+        return defaultValue
+    }
+    return Integer.parseInt(envValue)
+}
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
+
+def asString(String input) {
+    return "\"" + input + "\""
+}
+
+ext {
+    getBoolean = this.&getBoolean
+    getString = this.&getString
+    getInt = this.&getInt
+    getDate = this.&getDate
+    asString = this.&asString
+}

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Affinitas Challenge</string>
+    <string name="receipts_title">Receipts</string>
+    <string name="unknown_error">An unexpected error occured. Please try again later!</string>
+    <string name="login_title">Login</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_too_short">The password needs to be at least 8 characters long!</string>
+    <string name="invalid_email">Please enter a valid email!</string>
+</resources>
